@@ -1,4 +1,5 @@
 'use strict';
+
 console.log('server.js is connected');
 
 const express = require('express');
@@ -8,14 +9,14 @@ const ejs = require("ejs");
 const PORT = 3000;
 const app = express();
 
-//set view engine
-app.set('view engine', 'ejs')
+// set view engine and supply public files.
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
-app.get('/', function (req, res) {
-  res.render('index', { title: 'Hey', message: 'Hello there!' })
-})
 
-//serve static css files
-app.use(express.static('public'))
+// temporary routes
+app.get('/hello', function(req, res) {
+  res.render('pages/index');
+});
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
