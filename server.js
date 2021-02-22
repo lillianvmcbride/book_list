@@ -1,9 +1,10 @@
 'use strict';
 
-// set required node modules
+console.log('server.js is connected');
+
 const express = require('express');
 const superagent = require('superagent');
-const ejs = require('ejs');
+const ejs = require("ejs");
 
 const PORT = 3000;
 const app = express();
@@ -18,5 +19,4 @@ app.get('/hello', function(req, res) {
   res.render('pages/index');
 });
 
-
-app.listen(PORT, () => console.log(`App is listening on PORT:  ${PORT}`));
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
