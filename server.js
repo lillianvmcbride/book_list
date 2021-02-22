@@ -6,7 +6,7 @@ const express = require('express');
 const superagent = require('superagent');
 const ejs = require("ejs");
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 const app = express();
 
 // set view engine and supply public files.
