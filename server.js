@@ -21,7 +21,7 @@ app.post('/searches', searchBooks);
 
 function displayIndex(req, res) {
   res.render('pages/index');
-});
+}
 
 function newSearch(req, res){
   res.render('pages/searches/new');
