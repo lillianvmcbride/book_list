@@ -15,7 +15,7 @@ app.use(express.static('public'));
 
 
 // temporary routes
-app.get('/hello', function(req, res) {
+app.get('/', function(req, res) {
   res.render('pages/index');
 });
 app.get('/searches/new', newSearch);
