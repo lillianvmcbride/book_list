@@ -15,8 +15,11 @@ app.use(express.static('public'));
 
 
 // temporary routes
-app.get('/hello', function(req, res) {
+app.get('/hello', displayIndex);
+
+function displayIndex(req, res) {
   res.render('pages/index');
-});
+}
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+
