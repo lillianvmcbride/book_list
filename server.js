@@ -38,7 +38,10 @@ function searchBooks(req, res){
 
   superagent(url)
     .then((results) => results.body.items.map(bookResults => new Book(bookResults.volumeInfo)))
-    .then(results => res.render('pages/searches/show.ejs',{results: results}));
+    .then(results => {
+      res.render('pages/searches/show.ejs',{results: results});
+      console.log(results);
+    });
   // .then(library => {
   //   const mapBooks = library.body.items.map(books => )
   //   console.log ('📚',books.body.items);
