@@ -16,10 +16,15 @@ app.use(express.static('public'));
 
 // temporary routes
 app.get('/hello', displayIndex);
+app.get('/searches/new', newSearch);
 app.post('/searches', searchBooks);
 
 function displayIndex(req, res) {
   res.render('pages/index');
+});
+
+function newSearch(req, res){
+  res.render('pages/searches/new');
 }
 
 function searchBooks(req, res){
