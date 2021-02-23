@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="/styles/modules.css">
     <title>New Search</title>
 </head>
 <body>
     <main>
         <form>
+            <h1>Search Books</h1>
             <fieldset>
-                <legend>Book Search:</legend>
-                <label for="searchType"> Select by </label>
-                Title<input type="radio" name="searchType" value="title"/>
+                Title<input  id="radioSpace" type="radio" name="searchType" value="title"/>
                 Author<input type="radio" name="searchType" value="author"/>
-                <label for="inputField">Enter your search phrase:</label>
+                <br></br>
+                <label for="inputField"></label>
                 <input type="text" name="searchQuery"/>
                 <input type="submit" value="search"/>
             </fieldset>
