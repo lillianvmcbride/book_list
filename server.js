@@ -18,5 +18,10 @@ app.use(express.static('public'));
 app.get('/hello', function(req, res) {
   res.render('pages/index');
 });
+app.get('/searches/new', newSearch);
+
+function newSearch(req, res){
+  res.render('pages/searches/new');
+}
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
