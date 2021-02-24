@@ -20,20 +20,27 @@
   </head>
   <body>
     <header>
+    <h1>Book API Project</h1>
       <nav>
         <ul>
           <li><a href="searches/new">New Search</a></li>
         </ul>
       </nav>
     </header>
-  <main>
+    <main>
+      <h2>Books in the Database: <%= books.length %></h2>
+      <ul>
+         <% for (let i = 0; i < books.length; i++) {  %>
+          <li>
+              <p>Title: <%= books[i].title %></p>
+              <p>Author: <%= books[i].author %></p>
+              <p>ISBN Number: <%=books[i].isbn %></p>
+              <img src=<%= books[i].imageUrl %> />
+              <p> <%= books[i].description %></p> 
+          </li>
 
-<h1>Book API Project</h1>
-
-    <article>
-      <p>Book Collection coming soon...</p>
-    </article>
-
+          <% }  %>
+      </ul>
   </main>
   <footer></footer>
   </body>

@@ -2,9 +2,14 @@
 
 console.log('server.js is connected');
 
+require('dotenv').config();
 const express = require('express');
 const superagent = require('superagent');
-const ejs = require("ejs");
+const ejs = require('ejs');
+const pg = require('pg');
+
+const DATABASE_URL = process.env.DATABASE_URL;
+const client = new pg.Client(DATABASE_URL);
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -16,13 +21,26 @@ app.use(express.urlencoded({extended: true}));
 
 // temporary routes
 
-app.get('/hello', displayIndex);
+app.get('/', displayIndex);
 app.get('/searches/new', newSearch);
 app.post('/searches', searchBooks);
 
 function displayIndex(req, res) {
-  res.render('pages/index');
+  console.log('attempting to call up the index...')
+  const sqlQuery = 'SELECT * FROM booklist;';
+  console.log(sqlQuery);
+  client.query(sqlQuery).then(results => {
+    console.log('making sql query');
+    console.log(results);
+    const books = results.rows;
+    console.log(books);
+    res.render('pages/index.ejs', {books: books});
+  }).catch(error => {
+    res.status(500).send('Error in client query');
+    //console.log(error);
+  });
 }
+
 
 function newSearch(req, res){
   res.render('pages/searches/new');
@@ -53,6 +71,7 @@ function searchBooks(req, res){
 function Book(bookObject){
   this.title = bookObject.title;
   this.author = bookObject.authors?bookObject.authors[0]:'Author Unknown';
+  this.isbn = bookObject.industryIdentifiers[0].identifier;
   // console.log('🍙', bookObject.imageLinks);
   // console.log('🍙🍱', bookObject.imageLinks.thumbnail?true:false);
   this.thumbnail = bookObject.imageLinks?(bookObject.imageLinks.thumbnail?bookObject.imageLinks.thumbnail:'https://i.imgur.com/J5LVHEL.jpg'):'https://i.imgur.com/J5LVHEL.jpg';
@@ -62,4 +81,4 @@ function Book(bookObject){
 }
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
-
+client.connect();
