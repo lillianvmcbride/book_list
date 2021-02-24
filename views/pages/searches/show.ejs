@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <header>
+        <h1>Results Of Your Search</h1>
+        <nav>
+          <ul>
+            <li><a href="searches/new">New Search</a></li>
+          </ul>
+        </nav>
+      </header>
+    <main>
+        <ul>
+           <% for (let i = 0; i < results.length; i++) {  %>
+            <li>
+                <p>Title: <%= results[i].title %></p>
+                <p>Author: <%= results[i].author %></p>
+                <img src=<%= results[i].thumbnail %> />
+                <p> <%= results[i].description %></p> 
+            </li>
+
+            <% }  %>
+        </ul>
+    </main>
+</body>
+</html>
