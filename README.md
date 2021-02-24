@@ -6,6 +6,28 @@
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for a Code 301 class. (i.e. What's your problem domain?) -->
 
+### Mobile Color Palette:
+.
+Background: c5d7bd
+.
+Text: 383e56
+.
+Boxes: 9fb8ad
+.
+Header Background: fb743e
+
+
+### Desktop Color Palette:
+.
+Background: f7f6e7
+.
+Text: 314e52
+.
+Boxes: e7e6e1
+.
+Header Background: f2a154
+
+
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
