@@ -22,11 +22,18 @@
         </ul>
       </nav>
     </header>
-  <main>
-    <article>
-      <p>Book Collection coming soon...</p>
-    </article>
+    <main>
+      <ul>
+         <% for (let i = 0; i < results.length; i++) {  %>
+          <li>
+              <p>Title: <%= results[i].title %></p>
+              <p>Author: <%= results[i].author %></p>
+              <img src=<%= results[i].thumbnail %> />
+              <p> <%= results[i].description %></p> 
+          </li>
 
+          <% }  %>
+      </ul>
   </main>
   <footer></footer>
   </body>

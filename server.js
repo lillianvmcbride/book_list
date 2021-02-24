@@ -4,7 +4,11 @@ console.log('server.js is connected');
 
 const express = require('express');
 const superagent = require('superagent');
-const ejs = require("ejs");
+const ejs = require('ejs');
+const pg = require('pg');
+
+const DATABASE_URL = process.env.DATABASE_URL;
+const client = new pg.Client(DATABASE_URL);
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -21,8 +25,11 @@ app.get('/searches/new', newSearch);
 app.post('/searches', searchBooks);
 
 function displayIndex(req, res) {
-  res.render('pages/index');
+  return client.query(sqlQuery,sqlArray)
+
+  res.render('pages/index.ejs',);
 }
+
 
 function newSearch(req, res){
   res.render('pages/searches/new');
