@@ -2,6 +2,7 @@
 
 console.log('server.js is connected');
 
+require('dotenv').config();
 const express = require('express');
 const superagent = require('superagent');
 const ejs = require('ejs');
@@ -25,9 +26,14 @@ app.get('/searches/new', newSearch);
 app.post('/searches', searchBooks);
 
 function displayIndex(req, res) {
-  return client.query(sqlQuery,sqlArray)
-
-  res.render('pages/index.ejs',);
+  console.log('attempting to call up the index...')
+  const sqlQuery = 'SELECT * FROM booklist;';
+  client.query(sqlQuery).then(results => {
+    console.log('making sql query');
+    console.log(results);
+    const books = results.rows;
+    res.render('pages/index.ejs', {books: books});
+  });
 }
 
 

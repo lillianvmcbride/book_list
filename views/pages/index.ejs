@@ -24,12 +24,13 @@
     </header>
     <main>
       <ul>
-         <% for (let i = 0; i < results.length; i++) {  %>
+         <% for (let i = 0; i < books.length; i++) {  %>
           <li>
-              <p>Title: <%= results[i].title %></p>
-              <p>Author: <%= results[i].author %></p>
-              <img src=<%= results[i].thumbnail %> />
-              <p> <%= results[i].description %></p> 
+              <p>Title: <%= books[i].title %></p>
+              <p>Author: <%= books[i].author %></p>
+              <p>ISBN Number: <%=books[i].isbn %></p>
+              <img src=<%= books[i].imageUrl %> />
+              <p> <%= books[i].description %></p> 
           </li>
 
           <% }  %>
