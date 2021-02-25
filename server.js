@@ -80,5 +80,6 @@ function Book(bookObject){
   // console.log(this);
 }
 
-app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
 client.connect();
+
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
