@@ -11,7 +11,7 @@ const pg = require('pg');
 const DATABASE_URL = process.env.DATABASE_URL;
 const client = new pg.Client(DATABASE_URL);
 
-const PORT = process.env.PORT || 3111;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 // set view engine and supply public files.
