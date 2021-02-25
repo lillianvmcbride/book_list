@@ -1,4 +1,4 @@
-DROP TABLE booklist;
+DROP TABLE if exists booklist;
 CREATE TABLE IF NOT EXISTS booklist (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255),
