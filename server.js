@@ -38,7 +38,7 @@ function displayIndex(req, res) {
     res.render('pages/index.ejs', {books: books});
   }).catch(error => {
     res.status(500).send('Error in client query');
-    //console.log(error);
+    console.log(error);
   });
 }
 
