@@ -25,6 +25,7 @@ app.use(express.urlencoded({extended: true}));
 app.get('/', displayIndex);
 app.get('/searches/new', newSearch);
 app.post('/searches', searchBooks);
+app.post('/books', databaseWrite);
 
 function displayIndex(req, res) {
   console.log('attempting to call up the index...')
@@ -40,6 +41,21 @@ function displayIndex(req, res) {
     res.status(500).send('Error in client query');
     console.log(error);
   });
+}
+function databaseWrite(req,res) {
+  console.log('Storing book data.');
+  console.log(req.body.author);  
+  const sqlStatement = 'INSERT INTO booklist ( title, author, isbn, image_url, description) VALUES($1,$2,$3,$4,$5);';
+  const sqlBook = [req.body.title, req.body.author, req.body.isbn, req.body.thumbnail, req.body.description];
+  client.query(sqlStatement, sqlBook)
+  .then( results => {
+    console.log(results);
+    res.redirect('/');
+  }
+  ).catch(error => {
+    res.status(500).send('Error in client query****Insert');
+    console.log(error);
+  });;
 }
 
 
@@ -81,6 +97,7 @@ function Book(bookObject){
   // console.log(this);
 }
 
-client.connect();
+client.connect().then( () => {
+  app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+}).catch(console.error);
 
-app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
