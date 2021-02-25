@@ -1,4 +1,3 @@
-DROP TABLE books;
 DROP TABLE booklist;
 CREATE TABLE IF NOT EXISTS booklist (
   id SERIAL PRIMARY KEY,
