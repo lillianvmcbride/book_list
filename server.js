@@ -33,13 +33,11 @@ function displayIndex(req, res) {
   console.log(sqlQuery);
   client.query(sqlQuery).then(results => {
     console.log('making sql query');
-    console.log(results);
-    const books = results.rows;
-    console.log(books);
+    const books = results.rows
     res.render('pages/index.ejs', {books: books});
   }).catch(error => {
-    res.status(500).send('Error in client query');
     console.log(error);
+    res.render('pages/error.ejs', {error: error} );
   });
 }
 function databaseWrite(req,res) {
@@ -47,15 +45,23 @@ function databaseWrite(req,res) {
   console.log(req.body.author);  
   const sqlStatement = 'INSERT INTO booklist ( title, author, isbn, image_url, description) VALUES($1,$2,$3,$4,$5);';
   const sqlBook = [req.body.title, req.body.author, req.body.isbn, req.body.thumbnail, req.body.description];
+  const book = {
+    title: req.body.title,
+    author: req.body.author,
+    isbn: req.body.isbn,
+    thumbnail: req.body.thumbnail,
+    description: req.body.description
+  }
   client.query(sqlStatement, sqlBook)
   .then( results => {
     console.log(results);
-    res.redirect('/');
+    console.log('sending this book:', book);
+    res.render('pages/detail.ejs', {book: book} );
   }
   ).catch(error => {
-    res.status(500).send('Error in client query****Insert');
     console.log(error);
-  });;
+    res.render('pages/error.ejs', {error: error} );
+  });
 }
 
 
@@ -99,5 +105,8 @@ function Book(bookObject){
 
 client.connect().then( () => {
   app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
-}).catch(console.error);
+}).catch(error => {
+  console.log(error);
+  res.render('pages/error.ejs', {error: error} );
+});;
 
