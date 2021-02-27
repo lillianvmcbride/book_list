@@ -24,6 +24,14 @@
                 <p>ISBN Number: <%= results[i].isbn %></p>
                 <img src=<%= results[i].thumbnail %> />
                 <p> <%= results[i].description %></p> 
+                <form action="/books" method="POST">
+                <input type="hidden" value="<%=results[i].title%>" name="title">
+                <input type="hidden" value="<%=results[i].author%>" name="author">
+                <input type="hidden" value="<%=results[i].isbn%>" name="isbn">
+                <input type="hidden" value="<%=results[i].thumbnail%>" name="thumbnail">
+                <input type="hidden" value="<%=results[i].description%>" name="description">
+                <button type="submit">Save Book</button>
+                </form>
             </li>
 
             <% }  %>

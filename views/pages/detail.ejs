@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail View</title>
+</head>
+<body>
+    <header>
+        <h1>Detailed View of <%= book.title %></h1>
+        <nav>
+          <ul>
+            <li><a href="searches/new">New Search</a></li>
+            <li><a href="/">Home</a></li>
+          </ul>
+        </nav>
+      </header>
+    <main>
+     <section>
+        <p>Title: <%= book.title %></p>
+        <p>Author: <%= book.author %></p>
+        <p>ISBN Number: <%= book.isbn %></p>
+        <img src="<%= book.thumbnail %>" />
+        <p> <%= book.description %></p> 
+        <form action="/books" method="POST">
+        <input type="hidden" value="<%=book.title%>" name="title">
+        <input type="hidden" value="<%=book.author%>" name="author">
+        <input type="hidden" value="<%=book.isbn%>" name="isbn">
+        <input type="hidden" value="<%=book.thumbnail%>" name="thumbnail">
+        <input type="hidden" value="<%=book.description%>" name="description">
+        <button type="submit">Save Book</button>
+        </form>
+      </section>
+    </main>
+</body>
+</html>
