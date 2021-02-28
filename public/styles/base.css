@@ -1,11 +1,18 @@
 body, html {
   width: 480px;
   height: 100%;
-  margin:0;
+  margin-left: auto;
+  margin-right: auto;
   padding:0;
   box-sizing: border-box;
+  text-align: center;
 }
 body {
-  margin:0 auto;
+  margin-left: auto;
+  margin-right: auto;
   padding:0px;
+  text-align: center;
+}
+main {
+  text-align: center;
 }
