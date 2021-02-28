@@ -26,6 +26,7 @@ app.get('/', displayIndex);
 app.get('/searches/new', newSearch);
 app.post('/searches', searchBooks);
 app.post('/books', databaseWrite);
+// app.get('/books/:id', bookLookup); 
 
 function displayIndex(req, res) {
   console.log('attempting to call up the index...')
@@ -40,6 +41,9 @@ function displayIndex(req, res) {
     res.render('pages/error.ejs', {error: error} );
   });
 }
+  // function bookLookup(req, res) {
+  //   console.log(res.body);
+  // }
 function databaseWrite(req,res) {
   console.log('Storing book data.');
   console.log(req.body.author);  
@@ -82,6 +86,9 @@ function searchBooks(req, res){
     .then(results => {
       res.render('pages/searches/show.ejs',{results: results});
       console.log(results);
+    }).catch(error => {
+      console.log(error);
+      res.render('pages/error.ejs', {error: error} );
     });
   // .then(library => {
   //   const mapBooks = library.body.items.map(books => )
@@ -108,5 +115,5 @@ client.connect().then( () => {
 }).catch(error => {
   console.log(error);
   res.render('pages/error.ejs', {error: error} );
-});;
+});
 
