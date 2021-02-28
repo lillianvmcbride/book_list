@@ -35,7 +35,7 @@ function displayIndex(req, res) {
   console.log(sqlQuery);
   client.query(sqlQuery).then(results => {
     console.log('making sql query');
-    const books = results.rows
+    const books = results.rows;
     res.render('pages/index.ejs', {books: books});
   }).catch(error => {
     console.log(error);
@@ -43,10 +43,42 @@ function displayIndex(req, res) {
   });
 }
 
-function booklookup(req, res) {
-  console.log(req.params.id);
-  res.send(req.body.id);
+// function booklookup(req, res) {
+//   console.log(req.params.id);
+//   let {bookisbn} = req.params;
+//   let sqlquery = `SELECT * FROM booklist WHERE isbn='${bookisbn}';`;
+//   client.query(sqlquery).then(results => {
+//     const {book} = results;
+//     console.log(results.rows);
+//     //const book = new Book(results);
+//    // console.log(book);
+//    res.render('pages/detail.ejs', {book: book});
+//   }).catch(error => {
+//     console.log(error);
+//     res.render('pages/error.ejs', {error: error} );
+//   });
+// }
+
+
+function booklookup(req, res){
+  const {id} = req.params;
+  const SQL = `
+  SELECT *
+  FROM booklist
+  WHERE id =$1
+  LIMIT 1`; // make it so only one comes back
+  client.query(SQL, [id])
+    .then(results => {
+      const {book} = results;
+        res.render('pages/detail.ejs', { 
+          book: book
+        });
+    }).catch(error => {
+      console.log(error);
+      res.render('pages/error.ejs', {error: error} );
+    });
 }
+
 
 function databaseWrite(req,res) {
   console.log('Storing book data.');
